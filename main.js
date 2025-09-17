@@ -57,7 +57,7 @@ const INITIAL_PLAYER_POS = {
 
 // --- COLOR PALETTE ---
 const COLOR_PALETTE = {
-    BACKGROUND: #FFFFFF, 
+    BACKGROUND: 0xE5E5E5, 
 	WALL: 0x4a4a4a, 
 	PLAYER: 0x4287f5,
 	PLAYER_POWER_MODE: 0xffff00, 
@@ -547,3 +547,4 @@ const config = {
 
 
 new Phaser.Game(config);
+
