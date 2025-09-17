@@ -57,11 +57,27 @@ const INITIAL_PLAYER_POS = {
 
 // --- COLOR PALETTE ---
 const COLOR_PALETTE = {
-    BACKGROUND: 0x1a1a1a, WALL: 0x4a4a4a, PLAYER: 0x4287f5, PLAYER_POWER_MODE: 0xffff00, PLAYER_SPEED_BOOST: 0x00ff00,
-    DOT: 0xffffff, STEAK: 0xff0000, GOLD_STEAK: 0xffff00, BONE: 0xcccccc, SPEED_BOOST_ITEM: 0x00ff00,
-    SUPER_SNACK_ITEM: 0x00e5ff, ENEMY_DEFAULT_TINT_POWER_MODE: 0x8888ff, TEXT_DEFAULT: 0xffffff, TEXT_HIGHLIGHT: 0x0f0,
-    TEXT_WARNING: 0xff0000, TEXT_INFO: 0x00ffff, TEXT_SCORE_ENEMY: 0xffa500, TEXT_MENU_TITLE: 0xffffff,
-    TEXT_MENU_BUTTON: 0x0f0, TEXT_MENU_BUTTON_BACK: 0xff0, TEXT_GAME_OVER_TITLE: 0xffffff, TEXT_WIN_TITLE: 0xffffff,
+    BACKGROUND: #FFFFFF, 
+	WALL: 0x4a4a4a, 
+	PLAYER: 0x4287f5,
+	PLAYER_POWER_MODE: 0xffff00, 
+	PLAYER_SPEED_BOOST: 0x00ff00,
+    DOT: 0xffffff, 
+	STEAK: 0xff0000, 
+	GOLD_STEAK: 0xffff00, 
+	BONE: 0xcccccc, 
+	SPEED_BOOST_ITEM: 0x00ff00,
+    SUPER_SNACK_ITEM: 0x00e5ff, 
+	ENEMY_DEFAULT_TINT_POWER_MODE: 0x8888ff, 
+	TEXT_DEFAULT: 0xffffff, 
+	TEXT_HIGHLIGHT: 0x0f0,
+    TEXT_WARNING: 0xff0000, 
+	TEXT_INFO: 0x00ffff, 
+	TEXT_SCORE_ENEMY: 0xffa500, TEXT_MENU_TITLE: 0xffffff,
+    TEXT_MENU_BUTTON: 0x0f0, 
+	TEXT_MENU_BUTTON_BACK: 0xff0, 
+	TEXT_GAME_OVER_TITLE: 0xffffff, 
+	TEXT_WIN_TITLE: 0xffffff,
 };
 
 // Telegram Haptic Feedback Placeholder
@@ -528,5 +544,6 @@ const config = {
     },
     scene: [Preloader, MainMenu, HowToPlay, GameScene, PlayLevel, GameOver, WinScene]
 };
+
 
 new Phaser.Game(config);
