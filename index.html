@@ -60,7 +60,25 @@
         <!-- Numbers Content -->
         <div id="numbers-panel">
             <div class="sub-nav"><button class="tab-btn active" data-sub-target="stash">TOKENOMICS</button><button class="tab-btn" data-sub-target="chart">CHART</button><button class="tab-btn" data-sub-target="wallet">MARKETING WALLET</button></div>
-            <div class="sub-panel active" id="stash"><h2>THE STASH</h2><p class="token-text">SUPPLY: 1,000,000,000<br>TAX: 0% / 0% (YEAH, REALLY)<br>LIQUIDITY: BURNT TO A CRISP 🔥</p></div>
+            <div class="sub-panel active" id="stash">
+                <h2>THE STASH</h2>
+              
+                <p class="token-text">
+                    SYMBOL: $XIAOBAI<br>
+                    TOKEN NAME: XIAOBAI<br>
+                    SUPPLY: 1,000,000,000<br>
+                    TAX: 0% / 0% (YEAH, REALLY)<br>
+                    LIQUIDITY: BURNT TO A CRISP 🔥
+                </p>
+            
+                <div class="ca-container">
+                    <span class="ca-label">CA:</span>
+                    <button id="copy-ca-button" data-ca-address="0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027">
+                        <span class="ca-address">0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027</span>
+                        <span class="copy-icon">🐾</span>
+                    </button>
+                </div>
+            </div>
             <div class="sub-panel" id="chart">
                 <h2>TRACKING & CHARTS</h2>
                 <p>Follow our progress on your favorite platforms.</p>
@@ -86,19 +104,16 @@
             <div class="sub-panel active" id="widget">
                 <h2>GET THE GOODS</h2>
                 <p>The easiest way to get Xiaobai is right here.</p>
-                <!-- IFRAME SRC CORRECTED TO THE CURRENT, OFFICIAL URL -->
                 <iframe 
                     class="squid-widget"
-                    src="https://app.squidrouter.com/?config=%7B%22integratorId%22%3A%22squid-swap-widget%22%2C%22companyName%22%3A%22Squid%22%2C%22style%22%3A%7B%22neutralContent%22%3A%22%23C4AEEC%22%2C%22baseContent%22%3A%22%23070002%22%2C%22base100%22%3A%22%23ffffff%22%2C%22base200%22%3A%22%23fafafa%22%2C%22base300%22%3A%22%23e8e8e8%22%2C%22error%22%3A%22%23ED6A5E%22%2C%22warning%22%3A%22%23FFB155%22%2C%22success%22%3A%22%232EAEB0%22%2C%22primary%22%3A%22%23A992EA%22%2C%22secondary%22%3A%22%23F89CC3%22%2C%22secondaryContent%22%3A%22%23F7F6FB%22%2C%22neutral%22%3A%22%23FFFFFF%22%2C%22roundedBtn%22%3A%2226px%22%2C%22roundedCornerBtn%22%3A%22999px%22%2C%22roundedBox%22%3A%221rem%22%2C%22roundedDropDown%22%3A%2220rem%22%7D%2C%22slippage%22%3A1.5%2C%22infiniteApproval%22%3Afalse%2C%22enableExpress%22%3Atrue%2C%22apiUrl%22%3A%22https%3A%2F%2Fapi.squidrouter.com%22%2C%22comingSoonChainIds%22%3A%5B%5D%2C%22titles%22%3A%7B%22swap%22%3A%22Swap%22%2C%22settings%22%3A%22Settings%22%2C%22wallets%22%3A%22Wallets%22%2C%22tokens%22%3A%22Select%20Token%22%2C%22chains%22%3A%22Select%20Chain%22%2C%22history%22%3A%22History%22%2C%22transaction%22%3A%22Transaction%22%2C%22allTokens%22%3A%22Select%20Token%22%2C%22destination%22%3A%22Destination%20address%22%2C%22depositAddress%22%3A%22Deposit%20address%22%2C%22seimetamask%22%3A%22Important%20message!%22%7D%2C%22priceImpactWarnings%22%3A%7B%22warning%22%3A3%2C%22critical%22%3A5%7D%2C%22environment%22%3A%22mainnet%22%2C%22showOnRampLink%22%3Atrue%2C%22defaultTokens%22%3A%5B%5D%2C%22iframeBackgroundColorHex%22%3A%22%23C3A7FF%22%7D"
+                    src="https://app.squidrouter.com/?config=%7B%22integratorId%22%3A%22squid-swap-widget%22%2C%22companyName%22%3A%22Squid%22%2C%22style%22%3A%7B%22neutralContent%22%3A%22%23C4AEEC%22%2C%22baseContent%22%3A%22%23070002%22%2C%22base100%22%3A%22%23ffffff%22%2C%22base200%22%3A%22%23fafafa%22%2C%22base300%22%3A%22%23e8e8e8%22%2C%22error%22%3A%22%23ED6A5E%22%2C%22warning%22%3A%22%23FFB155%22%2C%22success%22%3A%22%232EAEB0%22%2C%22primary%22%3A%22%23A992EA%22%2C%22secondary%22%3A%22%23F89CC3%22%2C%22secondaryContent%22%3A%22%23F7F6FB%22%2C%22neutral%22%3A%22%23FFFFFF%22%2C%22roundedBtn%22%3A%2226px%22%2C%22roundedCornerBtn%22%3A%22999px%22%2C%22roundedBox%22%3A%221rem%22%2C%22roundedDropDown%22%3A%2220rem%22%7D%2C%22slippage%22%3A1.5%2C%22infiniteApproval%22%3Afalse%2C%22enableExpress%22%3Atrue%2C%22apiUrl%22%3A%22https%3A%2F%2Fapi.squidrouter.com%22%2C%22comingSoonChainIds%22%3A%5B%5D%2C%22titles%22%3A%7B%22swap%22%3A%22Swap%22%2C%22settings%22%3A%22Settings%22%2C%22wallets%22%3A%22Wallets%22%2C%22tokens%22%3A%22Select%20Token%22%2C%22chains%22%3A%22Select%20Chain%22%2C%22history%22%3A%22History%22%2C%22transaction%22%3A%22Transaction%22%2C%22allTokens%22%3A%22Select%20Token%22%2C%22destination%22%3A%22Destination%20address%22%2C%22depositAddress%22%3A%22Deposit%20address%22%2C%22seimetamask%22%3A%22Important%20message!%22%7D%2C%22priceImpactWarnings%22%3A%7B%22warning%22%3A3%2C%2C%22critical%22%3A5%7D%2C%22environment%22%3A%22mainnet%22%2C%22showOnRampLink%22%3Atrue%2C%22defaultTokens%22%3A%5B%5D%2C%22iframeBackgroundColorHex%22%3A%22%23C3A7FF%22%7D"
                     title="Squid Swap Widget"
                     frameborder="0">
                 </iframe>
             </div>
         </div>
-
     </div>
     
     <script src="app.js" defer></script>
 </body>
 </html>
-
