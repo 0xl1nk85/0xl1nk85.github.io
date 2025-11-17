@@ -361,6 +361,18 @@ footer {
     border: 1px solid var(--border-color);
 }
 
+.ca-container { display: flex; align-items: center; gap: 0.5rem; margin-top: -1rem; flex-wrap: wrap; }
+.ca-label { font-weight: 700; font-size: 1rem; }
+#copy-ca-button {
+    font-family: monospace; background-color: var(--surface-bg); border: 1px solid var(--border-color);
+    padding: 8px 12px; border-radius: 5px; cursor: pointer; font-size: 0.9rem;
+    color: var(--text-secondary); transition: all 0.2s ease;
+    display: flex; align-items: center; gap: 0.5rem;
+}
+#copy-ca-button:hover { border-color: var(--accent-primary); color: var(--text-primary); }
+#copy-ca-button .copy-icon { font-family: sans-serif; }
+#copy-ca-button.copied { background-color: var(--accent-secondary); border-color: var(--accent-secondary); color: var(--text-primary); }
+
 @keyframes bounce-in {
     0% { scale: 0.5; opacity: 0; }
     80% { scale: 1.1; opacity: 1; }
