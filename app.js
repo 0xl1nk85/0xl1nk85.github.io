@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
-    const navButtons = document.querySelectorAll('.nav-bubble:not(#main-bubble)');
+    // MODIFIED: This now selects ALL buttons with a data-target, including the main paw
+    const navButtons = document.querySelectorAll('.nav-bubble[data-target]');
     const backButton = document.getElementById('back-button');
     const contentContainer = document.getElementById('content-container');
     const contentTemplates = document.getElementById('content-templates');
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setupTabListeners(newContentWrapper);
         
-   
+        // Click-to-Copy Logic
         const copyButton = newContentWrapper.querySelector('#copy-ca-button');
         if (copyButton) {
             const addressSpan = copyButton.querySelector('.ca-address');
@@ -35,17 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             copyButton.addEventListener('click', () => {
                 const addressToCopy = copyButton.dataset.caAddress;
-
                 navigator.clipboard.writeText(addressToCopy).then(() => {
-                    // Success!
                     addressSpan.textContent = "Copied!";
                     iconSpan.textContent = "✅";
                     copyButton.classList.add('copied');
-
-                    // Revert back after 2 seconds
                     setTimeout(() => {
                         addressSpan.textContent = originalText;
-                        iconSpan.textContent = "📋";
+                        iconSpan.textContent = "🐾";
                         copyButton.classList.remove('copied');
                     }, 2000);
                 }).catch(err => {
@@ -74,12 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupTabListeners(container) {
         const tabs = container.querySelectorAll('.tab-btn');
         const subPanels = container.querySelectorAll('.sub-panel');
-
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 subPanels.forEach(p => p.classList.remove('active'));
-                
                 tab.classList.add('active');
                 container.querySelector(`#${tab.dataset.subTarget}`).classList.add('active');
             });
@@ -90,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const applyTheme = (themeName) => {
         body.classList.remove('theme-pink', 'theme-cyan', 'theme-yellow');
         body.classList.add(`theme-${themeName}`);
-        
         themeButtons.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.theme === themeName);
         });
@@ -104,11 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // On page load, check for a saved theme and apply it
-    const savedTheme = localStorage.getItem('selected-theme');
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    } else {
-        applyTheme('pink'); // Default theme
-    }
+    const savedTheme = localStorage.getItem('selected-theme') || 'pink';
+    applyTheme(savedTheme);
 });
