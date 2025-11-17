@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const template = contentTemplates.querySelector(`#${targetPanelId}`);
         if (!template) return;
 
-        // Clear previous content
         const contentWrapper = contentContainer.querySelector('.content-wrapper');
         if (contentWrapper) {
             contentContainer.removeChild(contentWrapper);
@@ -26,7 +25,35 @@ document.addEventListener('DOMContentLoaded', () => {
         contentContainer.scrollTop = 0;
         
         setupTabListeners(newContentWrapper);
-        // NO MORE WIDGET INITIALIZATION NEEDED
+        
+   
+        const copyButton = newContentWrapper.querySelector('#copy-ca-button');
+        if (copyButton) {
+            const addressSpan = copyButton.querySelector('.ca-address');
+            const iconSpan = copyButton.querySelector('.copy-icon');
+            const originalText = addressSpan.textContent;
+
+            copyButton.addEventListener('click', () => {
+                const addressToCopy = copyButton.dataset.caAddress;
+
+                navigator.clipboard.writeText(addressToCopy).then(() => {
+                    // Success!
+                    addressSpan.textContent = "Copied!";
+                    iconSpan.textContent = "✅";
+                    copyButton.classList.add('copied');
+
+                    // Revert back after 2 seconds
+                    setTimeout(() => {
+                        addressSpan.textContent = originalText;
+                        iconSpan.textContent = "📋";
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy Contract Address:', err);
+                    addressSpan.textContent = "Copy Failed";
+                });
+            });
+        }
     };
 
     // --- Show the main paw navigator ---
