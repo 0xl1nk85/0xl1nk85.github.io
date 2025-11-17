@@ -1,39 +1,39 @@
-/* Root Variables & Theme Management */
+/* 1. Root Variables & Theme Management (LIGHT THEME) */
 :root {
-    --white: #ffffff;
+    /* Base Light Theme Colors */
+    --main-bg: #ffffff;
+    --surface-bg: #f5f5f5;
+    --border-color: #e0e0e0;
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
 
-    --dark-bg: #1a1a1a;
-    --main-bg: #1a1a1a; 
-    --surface-bg: #282828;
-    --border-color: #333;
+    /* Fonts */
     --font-header: 'Fredoka One', cursive;
     --font-body: 'Montserrat', sans-serif;
 
-
+    /* Default Theme: Pink Accents */
     --accent-primary: #fe66c3;
     --accent-secondary: #efd052;
 }
 
+/* Theme-specific accent colors remain the same */
 body.theme-pink {
     --accent-primary: #fe66c3;
     --accent-secondary: #efd052;
-    --main-bg: #291822; 
 }
 
 body.theme-cyan {
     --accent-primary: #5ce1e6;
     --accent-secondary: #efd052;
-    --main-bg: #172b2b; 
 }
 
 body.theme-yellow {
     --accent-primary: #efd052;
     --accent-secondary: #fe66c3;
-    --main-bg: #2c281a; 
 }
 
 
-/* Global Styles */
+/* 2. Global Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -45,8 +45,8 @@ html {
 }
 
 body {
-    background-color: var(--main-bg); 
-    color: var(--white);
+    background-color: var(--main-bg); /* Use new white background variable */
+    color: var(--text-primary); /* Use new dark text variable */
     font-family: var(--font-body);
     height: 100vh;
     overflow-y: scroll;
@@ -56,12 +56,11 @@ body {
 h2 {
     font-family: var(--font-header);
     text-transform: uppercase;
-    -webkit-text-stroke: 2px black;
-    text-stroke: 2px black;
+    /* Removed text-stroke as it doesn't look good on a light background */
 }
 
 
-/* View State Management & Main Animations */
+/* 3. View State Management & Main Animations */
 #content-container {
     opacity: 0;
     transform: scale(1.05);
@@ -88,7 +87,7 @@ body.content-active #content-container {
 }
 
 
-/* Centering Container for the Paw */
+/* 4. Centering Container for the Paw */
 #paw-navigator {
     position: fixed;
     inset: 0;
@@ -110,18 +109,15 @@ body.content-active #content-container {
     border: none;
     background-color: var(--surface-bg);
     border: 2px solid var(--border-color);
-
     display: grid;
     place-items: center;
     text-align: center;
-    color: var(--white);
+    color: var(--text-primary); /* Changed to dark text */
     font-weight: 700;
     font-size: clamp(0.7rem, 2vw, 0.9rem);
     text-transform: uppercase;
     cursor: pointer;
-    
- 
-    transition: scale 0.3s ease, filter 0.3s ease, background-color 0.3s ease;
+    transition: scale 0.3s ease, filter 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     opacity: 0;
     animation: bounce-in 0.6s forwards;
 }
@@ -131,22 +127,19 @@ body.content-active #content-container {
 }
 
 .nav-bubble:hover {
-    /* UPDATED: Use the individual 'scale' property */
     scale: 1.1 !important; 
     filter: drop-shadow(0 0 10px var(--accent-primary));
     background-color: var(--accent-primary);
+    color: #ffffff; /* Use white text on hover for contrast */
 }
 
 /* --- Paw Shapes using border-radius --- */
 #legend-bubble, #numbers-bubble, #memes-bubble, #swap-bubble {
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
 }
-
 #main-bubble {
     border-radius: 50% / 60% 60% 40% 40%;
 }
-
-
 #main-bubble span { 
     color: var(--accent-primary);
     font-family: var(--font-header);
@@ -169,7 +162,7 @@ body.content-active #content-container {
     cursor: default;
 }
 
-/* CENTERED Fullscreen Content Container */
+/* 6. CENTERED Fullscreen Content Container */
 #content-container {
     position: fixed;
     inset: 0;
@@ -182,14 +175,15 @@ body.content-active #content-container {
 
 .content-wrapper {
     width: clamp(320px, 90vw, 1100px); 
-    background-color: var(--dark-bg);
+    background-color: var(--main-bg); /* Use white for the panel background */
     border-radius: 12px;
     padding: 1.5rem 2rem;
     border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Add a subtle shadow */
 }
 
 
-/* General Content Styling */
+/* 7. General Content Styling */
 h2 {
     font-size: clamp(2rem, 6vw, 3rem);
     color: var(--accent-secondary);
@@ -200,7 +194,7 @@ h2 {
 
 h3 {
     font-family: var(--font-header);
-    color: var(--white);
+    color: var(--text-primary);
     font-size: 1rem;
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
@@ -209,7 +203,7 @@ h3 {
 
 p {
     line-height: 1.6;
-    color: #ccc;
+    color: var(--text-secondary); /* Use new secondary text color */
     margin-bottom: 2rem;
 }
 
@@ -219,16 +213,11 @@ p {
     object-fit: contain; 
 }
 
-.sub-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
+.sub-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
 
 .tab-btn {
     text-decoration: none;
-    color: var(--white);
+    color: var(--text-primary); /* Dark text */
     background-color: var(--surface-bg);
     padding: 8px 15px;
     border-radius: 5px;
@@ -243,21 +232,22 @@ p {
 .tab-btn.active, .tab-btn:hover {
     background-color: var(--accent-primary);
     border-color: var(--accent-primary);
-    color: var(--white);
+    color: #ffffff; /* White text on hover */
 }
 
 .sub-panel { display: none; }
 .sub-panel.active { display: block; }
 
 .token-text { font-weight: 700; line-height: 2; font-size: 1rem; }
+
 .meme-gallery { display: flex; gap: 1rem; flex-wrap: wrap; }
-.meme-gallery img { width: 150px; height: 150px; object-fit: cover; background-color: var(--surface-bg); border-radius: 8px; }
+.meme-gallery img { width: 150px; height: 150px; object-fit: cover; background-color: var(--surface-bg); border-radius: 8px; border: 1px solid var(--border-color); }
 
 #back-button {
     display: block;
     margin: 2rem auto 0 auto;
     background: var(--surface-bg);
-    color: var(--white);
+    color: var(--text-primary);
     font-family: var(--font-body);
     font-weight: 700;
     border: 1px solid var(--border-color);
@@ -269,10 +259,11 @@ p {
 #back-button:hover {
     background-color: var(--accent-primary);
     border-color: var(--accent-primary);
+    color: #ffffff;
 }
 
 
-/* Theme Picker */
+/* 8. Theme Picker */
 .theme-picker {
     position: fixed;
     top: 1rem;
@@ -285,26 +276,19 @@ p {
     border-radius: 50px;
     border: 1px solid var(--border-color);
 }
-
 .theme-btn {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid var(--dark-bg);
+    border: 2px solid var(--surface-bg);
     cursor: pointer;
     transition: transform 0.2s ease;
 }
-
-.theme-btn:hover {
-    transform: scale(1.2);
-}
-
-.theme-btn.active {
-    border-color: var(--white);
-}
+.theme-btn:hover { transform: scale(1.2); }
+.theme-btn.active { border-color: var(--text-primary); }
 
 
-/* INDEPENDENT, FIXED Footer */
+/* 9. INDEPENDENT, FIXED Footer */
 footer {
     position: fixed;
     bottom: 0;
@@ -315,33 +299,19 @@ footer {
     text-align: center;
     font-family: sans-serif;
     font-size: clamp(0.6rem, 2vw, 0.7rem);
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-secondary); /* Use secondary text color */
     z-index: 100;
     pointer-events: none;
 }
 
-/* Roadmap Timeline Styles */
-.roadmap-list {
-    list-style: none;
-    padding: 0;
-    position: relative;
-    /* The main timeline bar */
-    border-left: 2px solid var(--border-color);
-    margin-left: 10px;
-}
-.roadmap-phase {
-    position: relative;
-    padding-left: 30px;
-    margin-bottom: 2.5rem;
-}
-.roadmap-phase:last-child {
-    margin-bottom: 0;
-}
-/* The dot on the timeline */
+/* 10. Roadmap Timeline Styles */
+.roadmap-list { list-style: none; padding: 0; position: relative; border-left: 2px solid var(--border-color); margin-left: 10px; }
+.roadmap-phase { position: relative; padding-left: 30px; margin-bottom: 2.5rem; }
+.roadmap-phase:last-child { margin-bottom: 0; }
 .roadmap-phase::before {
     content: '';
     position: absolute;
-    left: -11px; /* (dot width / 2) + (border width / 2) */
+    left: -11px;
     top: 4px;
     width: 20px;
     height: 20px;
@@ -350,33 +320,13 @@ footer {
     border: 2px solid var(--accent-primary);
     transition: background-color 0.3s ease;
 }
-.roadmap-phase:hover::before {
-    background-color: var(--accent-primary);
-}
-.roadmap-phase h3 {
-    font-family: var(--font-header);
-    color: var(--white);
-    font-size: 1.2rem;
-    margin: 0 0 0.5rem 0;
-}
-.roadmap-phase ul {
-    list-style-type: '🐾';
-    padding-left: 20px;
-}
-.roadmap-phase ul li {
-    color: #ccc;
-    font-size: 0.9rem;
-    padding-left: 10px;
-    line-height: 1.5;
-    margin-bottom: 0.25rem;
-}
-/* Link Button Styles */
-.link-buttons-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-}
+.roadmap-phase:hover::before { background-color: var(--accent-primary); }
+.roadmap-phase h3 { font-family: var(--font-header); color: var(--text-primary); font-size: 1.2rem; margin: 0 0 0.5rem 0; }
+.roadmap-phase ul { list-style-type: '🐾'; padding-left: 20px; }
+.roadmap-phase ul li { color: var(--text-secondary); font-size: 0.9rem; padding-left: 10px; line-height: 1.5; margin-bottom: 0.25rem; }
+
+/* 11. Link Button Styles */
+.link-buttons-container { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
 .link-btn {
     display: flex;
     align-items: center;
@@ -386,39 +336,33 @@ footer {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     text-decoration: none;
-    color: var(--white);
+    color: var(--text-primary);
     font-weight: 700;
     font-size: 0.9rem;
     transition: all 0.3s ease;
-    flex-grow: 1; /* Allows buttons to share space */
-    min-width: 200px; /* Prevents them from getting too squished */
+    flex-grow: 1;
+    min-width: 200px;
 }
 .link-btn:hover {
     background-color: var(--accent-primary);
     border-color: var(--accent-primary);
+    color: #ffffff;
     transform: translateY(-2px);
 }
-.link-btn img {
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-}
+.link-btn img { height: 24px; width: 24px; border-radius: 50%; }
 
+/* 12. Iframe and Keyframes */
 .squid-widget {
     width: 100%;
     height: 75vh; 
     min-height: 650px; 
     border-radius: 1rem; 
     margin-top: 1rem;
+    border: 1px solid var(--border-color);
 }
 
-/* Keyframe Animations */
 @keyframes bounce-in {
     0% { scale: 0.5; opacity: 0; }
     80% { scale: 1.1; opacity: 1; }
     100% { scale: 1; opacity: 1; }
-
 }
-
-
-
