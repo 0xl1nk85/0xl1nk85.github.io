@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaobai | The Degen's Best Friend</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Main Navigation Container with CSS Paw -->
+    <nav id="paw-navigator">
+        <div class="paw-container">
+            <button class="nav-bubble" id="legend-bubble" data-target="legend-panel"><span>THE LEGEND</span></button>
+            <button class="nav-bubble" id="numbers-bubble" data-target="numbers-panel"><span>THE NUMBERS</span></button>
+            <button class="nav-bubble" id="memes-bubble" data-target="memes-panel"><span>MEMES</span></button>
+            <button class="nav-bubble" id="swap-bubble" data-target="swap-panel"><span>SWAP</span></button>
+            <div class="nav-bubble" id="main-bubble"><span>XIAOBAI</span></div>
+        </div>
+    </nav>
+
+    <!-- Fullscreen Content Window -->
+    <main id="content-container">
+        <button id="back-button">🐾 GO BACK</button>
+    </main>
+
+    <!-- Theme Picker -->
+    <div class="theme-picker">
+        <button class="theme-btn" data-theme="pink" style="background-color: #fe66c3;" aria-label="Pink Theme"></button>
+        <button class="theme-btn" data-theme="cyan" style="background-color: #5ce1e6;" aria-label="Cyan Theme"></button>
+        <button class="theme-btn" data-theme="yellow" style="background-color: #efd052;" aria-label="Yellow Theme"></button>
+    </div>
+
+    <!-- Permanent, Centered Footer -->
+    <footer>
+        <p>&copy; 2025 XIAOBAI | THIS IS A MEME COIN WITH NO INTRINSIC VALUE. DO YOUR OWN RESEARCH (DYOR).</p>
+    </footer>
+
+    <!-- Hidden template for all content panels -->
+    <div style="display: none;" id="content-templates">
+
+        <!-- Legend Content -->
+        <div id="legend-panel">
+            <div class="sub-nav"><button class="tab-btn active" data-sub-target="lore">LORE</button><button class="tab-btn" data-sub-target="about">ABOUT</button><button class="tab-btn" data-sub-target="roadmap">ROADMAP</button></div>
+            <div class="sub-panel active" id="lore"><img src="assets/xiaobai-cartoon.png" class="panel-image"><h2>THE NARRATIVE</h2><p>Born from fluff and fueled by memes. Xiaobai isn't just a dog, he's a viral legend who decided the internet wasn't big enough. Now he's here to claim his throne on the blockchain.</p></div>
+            <div class="sub-panel" id="about">
+                <img src="assets/the-team.png" class="panel-image"><h2>THE PACK</h2><p>Who's behind this? A bunch of degens who are tired of rugs and serious projects. We're here for the culture, the community, and the memes. This is a 100% community-owned coin.</p>
+                <h3>OUR SOCIALS</h3>
+                <div class="link-buttons-container">
+                    <a href="#" target="_blank" class="link-btn"><img src="assets/x-logo.png" alt="X (Twitter)"> <span>X (Twitter)</span></a>
+                </div>
+            </div>
+            <div class="sub-panel" id="roadmap"><h2>THE TRAIL AHEAD</h2><ul class="roadmap-list"><li class="roadmap-phase"><h3>Phase 1: Puppy Steps</h3><ul><li>Coin Launch & Fair Distribution</li><li>Website & Socials Go Live</li><li>First Community Meme Contest</li><li>Liquidity Pool Burned</li><li>Initial 1,000 Holders</li></ul></li><li class="roadmap-phase"><h3>Phase 2: The Dog Park</h3><ul><li>CoinGecko & CMC Listings</li><li>Community Raids & Shilling Events</li><li>Partnerships with Canine Influencers</li><li>Launch of the 'Meme Factory' v2</li><li>Achieve 5,000 Holders</li></ul></li><li class="roadmap-phase"><h3>Phase 3: Learning New Tricks</h3><ul><li>First Centralized Exchange Listing</li><li>Launch Xiaobai PFP Collection</li><li>Charity Donation to Animal Shelters</li><li>Weekly Community AMAs</li><li>Establish International Communities</li></ul></li><li class="roadmap-phase"><h3>Phase 4: Barking Up the Right Tree</h3><ul><li>Major Exchange Listings (Top Tier)</li><li>Official Xiaobai Merchandise Store</li><li>Sponsor a Major Crypto Event</li><li>Viral Marketing Campaign</li><li>Cross-chain Bridge Development</li></ul></li><li class="roadmap-phase"><h3>Phase 5: Leader of the Pack</h3><ul><li>Xiaobai Swap/Utility Development</li><li>Integration with a P2E Game</li><li>Break into the Top 100 Meme Coins</li><li>Launch the XIAOBAI DAO</li><li>Global Brand Recognition</li></ul></li><li class="roadmap-phase"><h3>Phase 6: To the Moon (and Beyond!)</h3><ul><li>Secure a Spot on a Times Square Billboard</li><li>Unveil a Secret, Groundbreaking Utility</li><li>Host the First 'Xiaobai Fest'</li><li>Become the #1 Dog-themed Meme Coin</li><li>Announce the Next Great Adventure</li></ul></li></ul></div>
+        </div>
+
+        <!-- Numbers Content -->
+        <div id="numbers-panel">
+            <div class="sub-nav"><button class="tab-btn active" data-sub-target="stash">TOKENOMICS</button><button class="tab-btn" data-sub-target="chart">CHART</button><button class="tab-btn" data-sub-target="wallet">MARKETING WALLET</button></div>
+            <div class="sub-panel active" id="stash"><h2>THE STASH</h2><p class="token-text">SUPPLY: 1,000,000,000<br>TAX: 0% / 0% (YEAH, REALLY)<br>LIQUIDITY: BURNT TO A CRISP 🔥</p></div>
+            <div class="sub-panel" id="chart">
+                <h2>TRACKING & CHARTS</h2>
+                <p>Follow our progress on your favorite platforms.</p>
+                <div class="link-buttons-container">
+                    <a href="#" target="_blank" class="link-btn"><img src="assets/cmc-logo.png" alt="CoinMarketCap"> <span>CoinMarketCap</span></a>
+                    <a href="#" target="_blank" class="link-btn"><img src="assets/cg-logo.png" alt="CoinGecko"> <span>CoinGecko</span></a>
+                    <a href="#" target="_blank" class="link-btn"><img src="assets/dex-logo.png" alt="DexScreener"> <span>DexScreener</span></a>
+                </div>
+            </div>
+            <div class="sub-panel" id="wallet"><h2>THE WAR CHEST</h2><p>Transparency is key. The marketing wallet is used for listings, contests, and spreading the word of Xiaobai. Address: [YOUR WALLET ADDRESS HERE]</p></div>
+        </div>
+
+        <!-- Memes Content -->
+        <div id="memes-panel">
+            <div class="sub-nav"><button class="tab-btn active" data-sub-target="gallery">GALLERY</button><button class="tab-btn" data-sub-target="pfp">PFPs</button></div>
+            <div class="sub-panel active" id="gallery"><h2>THE MEME FACTORY</h2><p>Our community makes the best memes. Here's proof.</p><div class="meme-gallery"><img src="assets/meme1.png" alt="Meme 1"><img src="assets-meme2.png" alt="Meme 2"><img src="assets/meme3.png" alt="Meme 3"></div></div>
+            <div class="sub-panel" id="pfp"><h2>FOR YOUR PROFILE</h2><p>Rep the pack! Use these PFPs on your social media profiles to show your support.</p><div class="meme-gallery"><img src="assets/pfp1.png" alt="PFP 1"><img src="assets/pfp2.png" alt="PFP 2"><img src="assets/pfp3.png" alt="PFP 3"></div></div>
+        </div>
+
+        <!-- Swap Content -->
+        <div id="swap-panel">
+            <div class="sub-nav"><button class="tab-btn active" data-sub-target="widget">SWAP</button></div>
+            <div class="sub-panel active" id="widget">
+                <h2>GET THE GOODS</h2>
+                <p>The easiest way to get Xiaobai is right here.</p>
+                <iframe 
+                    class="squid-widget"
+                    src="https://widget.squidrouter.com/iframe?config=%7B%22integratorId%22%3A%22squid-swap-widget%22%2C%22companyName%22%3A%22Squid%22%2C%22style%22%3A%7B%22neutralContent%22%3A%22%23C4AEEC%22%2C%22baseContent%22%3A%22%23070002%22%2C%22base100%22%3A%22%23ffffff%22%2C%22base200%22%3A%22%23fafafa%22%2C%22base300%22%3A%22%23e8e8e8%22%2C%22error%22%3A%22%23ED6A5E%22%2C%22warning%22%3A%22%23FFB155%22%2C%22success%22%3A%22%232EAEB0%22%2C%22primary%22%3A%22%23A992EA%22%2C%22secondary%22%3A%22%23F89CC3%22%2C%22secondaryContent%22%3A%22%23F7F6FB%22%2C%22neutral%22%3A%22%23FFFFFF%22%2C%22roundedBtn%22%3A%2226px%22%2C%22roundedCornerBtn%22%3A%22999px%22%2C%22roundedBox%22%3A%221rem%22%2C%22roundedDropDown%22%3A%2220rem%22%7D%2C%22slippage%22%3A1.5%2C%22infiniteApproval%22%3Afalse%2C%22enableExpress%22%3Atrue%2C%22apiUrl%22%3A%22https%3A%2F%2Fapi.squidrouter.com%22%2C%22comingSoonChainIds%22%3A%5B%5D%2C%22titles%22%3A%7B%22swap%22%3A%22Swap%22%2C%22settings%22%3A%22Settings%22%2C%22wallets%22%3A%22Wallets%22%2C%22tokens%22%3A%22Select%20Token%22%2C%2C%22chains%22%3A%22Select%20Chain%22%2C%22history%22%3A%22History%22%2C%22transaction%22%3A%22Transaction%22%2C%22allTokens%22%3A%22Select%20Token%22%2C%22destination%22%3A%22Destination%20address%22%2C%22depositAddress%22%3A%22Deposit%20address%22%2C%22seimetamask%22%3A%22Important%20message!%22%7D%2C%22priceImpactWarnings%22%3A%7B%22warning%22%3A3%2C%22critical%22%3A5%7D%2C%22environment%22%3A%22mainnet%22%2C%22showOnRampLink%22%3Atrue%2C%22defaultTokens%22%3A%5B%5D%2C%22iframeBackgroundColorHex%22%3A%22%23C3A7FF%22%7D" 
+                    title="Squid Swap Widget"
+                    frameborder="0">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="app.js" defer></script>
+</body>
+</html>

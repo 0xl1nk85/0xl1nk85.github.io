@@ -1,0 +1,87 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    const navButtons = document.querySelectorAll('.nav-bubble:not(#main-bubble)');
+    const backButton = document.getElementById('back-button');
+    const contentContainer = document.getElementById('content-container');
+    const contentTemplates = document.getElementById('content-templates');
+    const themeButtons = document.querySelectorAll('.theme-btn');
+
+    // --- Show the correct content panel ---
+    const showContent = (targetPanelId) => {
+        const template = contentTemplates.querySelector(`#${targetPanelId}`);
+        if (!template) return;
+
+        // Clear previous content
+        const contentWrapper = contentContainer.querySelector('.content-wrapper');
+        if (contentWrapper) {
+            contentContainer.removeChild(contentWrapper);
+        }
+        
+        const newContentWrapper = document.createElement('div');
+        newContentWrapper.className = 'content-wrapper';
+        newContentWrapper.innerHTML = template.innerHTML;
+        contentContainer.prepend(newContentWrapper);
+
+        body.classList.add('content-active');
+        contentContainer.scrollTop = 0;
+        
+        setupTabListeners(newContentWrapper);
+        // NO MORE WIDGET INITIALIZATION NEEDED
+    };
+
+    // --- Show the main paw navigator ---
+    const showNav = () => {
+        body.classList.remove('content-active');
+    };
+
+    // --- Main Navigation Event Listeners ---
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            showContent(button.dataset.target);
+        });
+    });
+
+    backButton.addEventListener('click', showNav);
+
+    // --- Function to handle sub-navigation tabs ---
+    function setupTabListeners(container) {
+        const tabs = container.querySelectorAll('.tab-btn');
+        const subPanels = container.querySelectorAll('.sub-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                subPanels.forEach(p => p.classList.remove('active'));
+                
+                tab.classList.add('active');
+                container.querySelector(`#${tab.dataset.subTarget}`).classList.add('active');
+            });
+        });
+    }
+
+    // --- THEME PICKER LOGIC ---
+    const applyTheme = (themeName) => {
+        body.classList.remove('theme-pink', 'theme-cyan', 'theme-yellow');
+        body.classList.add(`theme-${themeName}`);
+        
+        themeButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.theme === themeName);
+        });
+    };
+
+    themeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const themeName = button.dataset.theme;
+            localStorage.setItem('selected-theme', themeName);
+            applyTheme(themeName);
+        });
+    });
+    
+    // On page load, check for a saved theme and apply it
+    const savedTheme = localStorage.getItem('selected-theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else {
+        applyTheme('pink'); // Default theme
+    }
+});
