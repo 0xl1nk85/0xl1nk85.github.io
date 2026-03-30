@@ -45,12 +45,12 @@ html {
 }
 
 body {
-    background-color: var(--main-bg); /* Use new white background variable */
-    color: var(--text-primary); /* Use new dark text variable */
+    background-color: var(--main-bg);
+    color: var(--text-primary);
     font-family: var(--font-body);
-    height: 100vh;
-    overflow-y: scroll;
-    transition: background-color 0.4s ease; 
+    min-height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.4s ease;
 }
 
 h2 {
@@ -113,7 +113,6 @@ body.content-active #content-container {
 /* 5. Navigation using CSS Paw SHAPES */
 .nav-bubble {
     position: absolute;
-    border: none;
     background-color: var(--surface-bg);
     border: 2px solid var(--border-color);
     display: grid;
@@ -169,13 +168,13 @@ body.content-active #content-container {
 #numbers-bubble { top: 0%;    left: 23%;  width: 23%; height: 45%; animation-delay: 0.2s; rotate: -7deg; }
 #memes-bubble   { top: 0%;    right: 23%; width: 23%; height: 45%; animation-delay: 0.3s; rotate: 7deg; }
 #swap-bubble    { top: 30%;   right: -0%;  width: 20%; height: 40%; animation-delay: 0.4s; rotate: 20deg; }
-#main-bubble    { 
+#main-bubble    {
     top: 55%;   left: 50%;
-    width: 48%; height: 60%; 
-    translate: -50% 0; 
-    rotate: 0deg;      
+    width: 48%; height: 60%;
+    translate: -50% 0;
+    rotate: 0deg;
     animation-delay: 0s;
-    cursor: default;
+    cursor: pointer;
 }
 
 /* 6. CENTERED Fullscreen Content Container */
@@ -226,10 +225,11 @@ p {
     margin-bottom: 2rem;
 }
 
-.panel-image { 
-    height: 100px; 
+.panel-image {
+    height: clamp(80px, 20vw, 150px);
     margin-bottom: 1rem;
-    object-fit: contain; 
+    object-fit: contain;
+    display: block;
 }
 
 .sub-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; width: 100%; }
@@ -291,15 +291,13 @@ p {
 
 .placeholder-image {
     width: 100%;
-    height: 250px;
+    height: 200px;
     border: 2px dashed var(--border-color);
     border-radius: 8px;
-    
-   
-    background-image: url('assets/building.png');
-    background-size: contain; 
-    background-position: center center;
-    background-repeat: no-repeat;
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    color: var(--border-color);
 }
 
 
@@ -317,12 +315,14 @@ p {
     border: 1px solid var(--border-color);
 }
 .theme-btn {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     border: 2px solid var(--surface-bg);
     cursor: pointer;
     transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 .theme-btn:hover { transform: scale(1.2); }
 .theme-btn.active { border-color: var(--text-primary); }
@@ -393,18 +393,18 @@ footer {
     transform: translateY(-2px);
 }
 .link-btn img { height: 24px; width: 24px; border-radius: 50%; }
+.coming-soon-btn { opacity: 0.5; cursor: default; pointer-events: none; }
 
 /* 12. Iframe and Keyframes */
 .squid-widget {
     width: 100%;
-    height: 70vh;
-    min-height: 500px;
+    height: clamp(400px, 70vh, 700px);
     border-radius: 1rem;
     margin-top: 1rem;
     border: 1px solid var(--border-color);
 }
 
-.ca-container { display: flex; align-items: center; gap: 0.5rem; margin-top: -1rem; flex-wrap: wrap; }
+.ca-container { display: flex; align-items: center; gap: 0.5rem; margin-top: 0; flex-wrap: wrap; }
 .ca-label { font-weight: 700; font-size: 1rem; }
 #copy-ca-button {
     font-family: monospace; background-color: var(--surface-bg); border: 1px solid var(--border-color);
@@ -487,11 +487,12 @@ footer {
 /* 15. Hero Mascot */
 .hero-mascot {
     height: clamp(100px, 22vh, 220px);
-    margin-top: -1rem;
-    z-index: -1;
+    margin-top: -0.5rem;
+    z-index: 1;
     filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.15));
     pointer-events: none;
     animation: mascot-float 3s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
 @keyframes mascot-float {
@@ -556,13 +557,16 @@ footer {
     background: none;
     border: none;
     font-family: monospace;
-    font-size: clamp(0.55rem, 1.4vw, 0.8rem);
+    font-size: clamp(0.65rem, 1.8vw, 0.8rem);
     color: var(--text-secondary);
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     transition: color 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    word-break: break-all;
 }
 
 #copy-ca-landing:hover {
@@ -599,7 +603,7 @@ footer {
     .diamond-icon img { width: 18px; height: 18px; }
 
     .landing-ca-bar { padding: 5px 12px; margin-top: 0.5rem; }
-    #copy-ca-landing { font-size: 0.6rem; }
+    #copy-ca-landing { font-size: 0.55rem; }
 
     .content-wrapper { padding: 1rem 0.75rem; }
     .sub-nav { gap: 0.4rem; }
