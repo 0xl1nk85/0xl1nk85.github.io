@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xiaobai | Crosschain Swap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .swap-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            background: #f5f5f5;
+        }
+        .swap-header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            color: #1a1a1a;
+        }
+        .back-link {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: #fe66c3;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #fe66c3;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+        }
+        .back-link:hover {
+            background: #fe66c3;
+            color: #fff;
+        }
+        .swap-frame-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .swap-loading-screen {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: #f5f5f5;
+            z-index: 2;
+            font-weight: 700;
+            color: #555;
+            transition: opacity 0.3s ease;
+        }
+        .swap-loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .swap-error-screen {
+            display: none;
+            position: absolute;
+            inset: 0;
+            place-items: center;
+            background: #f5f5f5;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem;
+        }
+        .swap-error-screen.active {
+            display: grid;
+        }
+        .swap-error-screen p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .swap-error-screen button {
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: #fe66c3;
+            color: #fff;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 0.25rem;
+        }
+        .swap-error-screen a {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: #f5f5f5;
+            color: #1a1a1a;
+            border: 1px solid #e0e0e0;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin: 0.25rem;
+        }
+        iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            min-height: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="swap-header">
+        <h1>Crosschain Swap</h1>
+        <a href="index.html" class="back-link">Back</a>
+    </div>
+    <div class="swap-frame-container">
+        <div class="swap-loading-screen" id="loading">Loading Squid Router...</div>
+        <div class="swap-error-screen" id="error">
+            <div>
+                <p>Failed to load Squid Router.</p>
+                <button id="retry-btn">Retry</button>
+                <a href="https://app.squidrouter.com/" target="_blank">Open Externally</a>
+            </div>
+        </div>
+        <iframe id="swap-frame" src="https://app.squidrouter.com/?config=%7B%22integratorId%22%3A%22squid-swap-widget%22%2C%22companyName%22%3A%22Squid%22%2C%22style%22%3A%7B%22neutralContent%22%3A%22%23C4AEEC%22%2C%22baseContent%22%3A%22%23070002%22%2C%22base100%22%3A%22%23ffffff%22%2C%22base200%22%3A%22%23fafafa%22%2C%22base300%22%3A%22%23e8e8e8%22%2C%22error%22%3A%22%23ED6A5E%22%2C%22warning%22%3A%22%23FFB155%22%2C%22success%22%3A%22%232EAEB0%22%2C%22primary%22%3A%22%23A992EA%22%2C%22secondary%22%3A%22%23F89CC3%22%2C%22secondaryContent%22%3A%22%23F7F6FB%22%2C%22neutral%22%3A%22%23FFFFFF%22%2C%22roundedBtn%22%3A%2226px%22%2C%22roundedCornerBtn%22%3A%22999px%22%2C%22roundedBox%22%3A%221rem%22%2C%22roundedDropDown%22%3A%2220rem%22%7D%2C%22slippage%22%3A1.5%2C%22infiniteApproval%22%3Afalse%2C%22enableExpress%22%3Atrue%2C%22apiUrl%22%3A%22https%3A%2F%2Fapi.squidrouter.com%22%2C%22titles%22%3A%7B%22swap%22%3A%22Swap%22%7D%2C%22environment%22%3A%22mainnet%22%7D" title="Squid Swap Widget" frameborder="0"></iframe>
+    </div>
+    <script>
+        const iframe = document.getElementById('swap-frame');
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const retryBtn = document.getElementById('retry-btn');
+
+        let timeout = setTimeout(() => {
+            if (!loading.classList.contains('hidden')) {
+                loading.classList.add('hidden');
+                error.classList.add('active');
+                iframe.style.display = 'none';
+            }
+        }, 15000);
+
+        iframe.addEventListener('load', () => {
+            clearTimeout(timeout);
+            loading.classList.add('hidden');
+        });
+
+        retryBtn.addEventListener('click', () => {
+            error.classList.remove('active');
+            loading.classList.remove('hidden');
+            iframe.style.display = '';
+            const src = iframe.src;
+            iframe.src = '';
+            timeout = setTimeout(() => {
+                if (!loading.classList.contains('hidden')) {
+                    loading.classList.add('hidden');
+                    error.classList.add('active');
+                    iframe.style.display = 'none';
+                }
+            }, 15000);
+            setTimeout(() => { iframe.src = src; }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setupTabListeners(wrapper);
         setupCopyButton(wrapper);
-        setupSwapWidgets(wrapper);
         setupLightbox(wrapper);
     };
 
@@ -86,97 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =====================
-    // SWAP WIDGET SWITCHER
-    // =====================
-    function setupSwapWidgets(container) {
-        const providerBtns = container.querySelectorAll('.swap-provider-btn');
-        const frames = container.querySelectorAll('.swap-widget-frame');
-
-        if (!providerBtns.length) return;
-
-        // Lazy-load: only load iframe src when provider is first selected
-        const loadIframe = (frame) => {
-            const iframe = frame.querySelector('.swap-iframe');
-            const loading = frame.querySelector('.swap-loading');
-            const error = frame.querySelector('.swap-error');
-
-            if (!iframe || iframe.src) return; // already loaded
-
-            const src = iframe.dataset.src;
-            if (!src) return;
-
-            if (loading) loading.classList.remove('hidden');
-            if (error) error.style.display = 'none';
-
-            iframe.src = src;
-
-            iframe.addEventListener('load', () => {
-                if (loading) loading.classList.add('hidden');
-            }, { once: true });
-
-            // Timeout: if iframe doesn't load in 15s, show error
-            const timeout = setTimeout(() => {
-                if (loading && !loading.classList.contains('hidden')) {
-                    loading.classList.add('hidden');
-                    iframe.style.display = 'none';
-                    if (error) error.style.display = 'block';
-                }
-            }, 15000);
-
-            iframe.addEventListener('load', () => clearTimeout(timeout), { once: true });
-        };
-
-        // Retry button handler
-        const setupRetry = (frame) => {
-            const retryBtn = frame.querySelector('.swap-retry-btn');
-            if (!retryBtn) return;
-
-            retryBtn.addEventListener('click', () => {
-                const iframe = frame.querySelector('.swap-iframe');
-                const loading = frame.querySelector('.swap-loading');
-                const error = frame.querySelector('.swap-error');
-
-                if (error) error.style.display = 'none';
-                if (iframe) {
-                    iframe.style.display = '';
-                    iframe.src = '';
-                    iframe.removeAttribute('src');
-                }
-
-                // Re-trigger load
-                setTimeout(() => loadIframe(frame), 100);
-            });
-        };
-
-        frames.forEach(setupRetry);
-
-        // Switch between providers
-        providerBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const provider = btn.dataset.provider;
-
-                providerBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                frames.forEach(f => f.classList.remove('active'));
-                const targetFrame = container.querySelector(`#swap-${provider}`);
-                if (targetFrame) {
-                    targetFrame.classList.add('active');
-                    loadIframe(targetFrame);
-                }
-            });
-        });
-
-        // Load the default (first active) provider
-        const activeFrame = container.querySelector('.swap-widget-frame.active');
-        if (activeFrame) loadIframe(activeFrame);
-    }
-
-    // =====================
     // LIGHTBOX (Meme Gallery)
     // =====================
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox ? lightbox.querySelector('.lightbox-img') : null;
+    const lightboxDownload = lightbox ? lightbox.querySelector('.lightbox-download') : null;
     const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
 
     function setupLightbox(container) {
@@ -185,7 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
             item.addEventListener('click', () => {
                 const fullSrc = item.dataset.full;
                 if (!fullSrc || !lightbox || !lightboxImg) return;
+
                 lightboxImg.src = fullSrc;
+                if (lightboxDownload) {
+                    lightboxDownload.href = fullSrc;
+                }
                 lightbox.classList.add('active');
             });
         });
@@ -195,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeLightbox = () => {
             lightbox.classList.remove('active');
             lightboxImg.src = '';
+            if (lightboxDownload) lightboxDownload.href = '';
         };
 
         lightboxClose.addEventListener('click', closeLightbox);

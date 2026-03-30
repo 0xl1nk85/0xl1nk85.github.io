@@ -142,38 +142,10 @@
                 <button class="tab-btn" data-sub-target="cex-list">CEX LISTINGS</button>
             </div>
             <div class="sub-panel active" id="widget">
-                <h2>GET THE GOODS</h2><p>Choose your preferred swap provider below.</p>
-
-                <!-- Swap Provider Switcher -->
-                <div class="swap-switcher">
-                    <button class="swap-provider-btn active" data-provider="squid">
-                        <span class="swap-provider-icon">🐍</span> Crosschain Swap
-                    </button>
-                    <button class="swap-provider-btn" data-provider="uniswap">
-                        <span class="swap-provider-icon">🦄</span> Uniswap
-                    </button>
-                </div>
-
-                <!-- Swap Widget Container -->
-                <div class="swap-widget-container">
-                    <div class="swap-widget-frame active" id="swap-squid">
-                        <div class="swap-loading">Loading Squid Router...</div>
-                        <iframe class="swap-iframe" data-src="https://app.squidrouter.com/?config=%7B%22integratorId%22%3A%22squid-swap-widget%22%2C%22companyName%22%3A%22Squid%22%2C%22style%22%3A%7B%22neutralContent%22%3A%22%23C4AEEC%22%2C%22baseContent%22%3A%22%23070002%22%2C%22base100%22%3A%22%23ffffff%22%2C%22base200%22%3A%22%23fafafa%22%2C%22base300%22%3A%22%23e8e8e8%22%2C%22error%22%3A%22%23ED6A5E%22%2C%22warning%22%3A%22%23FFB155%22%2C%22success%22%3A%22%232EAEB0%22%2C%22primary%22%3A%22%23A992EA%22%2C%22secondary%22%3A%22%23F89CC3%22%2C%22secondaryContent%22%3A%22%23F7F6FB%22%2C%22neutral%22%3A%22%23FFFFFF%22%2C%22roundedBtn%22%3A%2226px%22%2C%22roundedCornerBtn%22%3A%22999px%22%2C%22roundedBox%22%3A%221rem%22%2C%22roundedDropDown%22%3A%2220rem%22%7D%2C%22slippage%22%3A1.5%2C%22infiniteApproval%22%3Afalse%2C%22enableExpress%22%3Atrue%2C%22apiUrl%22%3A%22https%3A%2F%2Fapi.squidrouter.com%22%2C%22titles%22%3A%7B%22swap%22%3A%22Swap%22%7D%2C%22environment%22%3A%22mainnet%22%7D" title="Squid Swap Widget" frameborder="0"></iframe>
-                        <div class="swap-error" style="display:none;">
-                            <p>Failed to load Squid Router.</p>
-                            <button class="swap-retry-btn">Retry</button>
-                            <a href="https://app.squidrouter.com/" target="_blank" class="swap-fallback-link">Open in new tab</a>
-                        </div>
-                    </div>
-                    <div class="swap-widget-frame" id="swap-uniswap">
-                        <div class="swap-loading">Loading Uniswap...</div>
-                        <iframe class="swap-iframe" data-src="https://app.uniswap.org/#/swap?outputCurrency=0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027&chain=ethereum" title="Uniswap Widget" frameborder="0" allow="clipboard-write"></iframe>
-                        <div class="swap-error" style="display:none;">
-                            <p>Failed to load Uniswap.</p>
-                            <button class="swap-retry-btn">Retry</button>
-                            <a href="https://app.uniswap.org/explore/tokens/ethereum/0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027?inputCurrency=NATIVE" target="_blank" class="swap-fallback-link">Open in new tab</a>
-                        </div>
-                    </div>
+                <h2>GET THE GOODS</h2><p>Choose your preferred swap provider. Opens in a dedicated page for the best experience.</p>
+                <div class="link-buttons-container">
+                    <a href="swap-squid.html" class="link-btn swap-link-btn"><span class="swap-link-icon">🐍</span> <span>Crosschain Swap (Squid)</span></a>
+                    <a href="swap-uniswap.html" class="link-btn swap-link-btn"><span class="swap-link-icon">🦄</span> <span>Uniswap</span></a>
                 </div>
             </div>
      
@@ -218,7 +190,10 @@
     <!-- Lightbox Overlay -->
     <div id="lightbox" class="lightbox">
         <button class="lightbox-close" aria-label="Close">&times;</button>
-        <img class="lightbox-img" src="" alt="Full size image">
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="Full size image">
+            <a class="lightbox-download" href="" download aria-label="Download image">Download</a>
+        </div>
     </div>
 
     <script src="app.js" defer></script>

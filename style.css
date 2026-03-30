@@ -433,135 +433,14 @@ footer {
 }
 
 
-/* 14. Swap Provider Switcher */
-.swap-switcher {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    flex-wrap: wrap;
+/* 14. Swap Link Buttons */
+.swap-link-btn {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem) !important;
+    padding: 16px 20px !important;
 }
 
-.swap-provider-btn {
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-family: var(--font-header);
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
-    border: 2px solid var(--border-color);
-    background-color: var(--surface-bg);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-    flex: 1 1 auto;
-    justify-content: center;
-}
-
-.swap-provider-btn:hover {
-    border-color: var(--accent-primary);
-}
-
-.swap-provider-btn.active {
-    background-color: var(--accent-primary);
-    border-color: var(--accent-primary);
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.swap-provider-icon {
-    font-size: 1.2em;
-}
-
-.swap-widget-container {
-    position: relative;
-    width: 100%;
-}
-
-.swap-widget-frame {
-    display: none;
-    position: relative;
-}
-
-.swap-widget-frame.active {
-    display: block;
-}
-
-.swap-iframe {
-    width: 100%;
-    height: clamp(400px, 70vh, 700px);
-    border-radius: 1rem;
-    border: 1px solid var(--border-color);
-}
-
-.swap-loading {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    background: var(--surface-bg);
-    border-radius: 1rem;
-    font-family: var(--font-body);
-    font-weight: 700;
-    color: var(--text-secondary);
-    z-index: 1;
-    pointer-events: none;
-}
-
-.swap-loading.hidden {
-    display: none;
-}
-
-.swap-error {
-    text-align: center;
-    padding: 2rem;
-    background: var(--surface-bg);
-    border-radius: 1rem;
-    border: 1px solid var(--border-color);
-}
-
-.swap-error p {
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.swap-retry-btn {
-    padding: 10px 24px;
-    border-radius: 50px;
-    background-color: var(--accent-primary);
-    color: #ffffff;
-    border: none;
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    transition: transform 0.2s ease;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.swap-retry-btn:hover {
-    transform: translateY(-1px);
-}
-
-.swap-fallback-link {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 50px;
-    background-color: var(--surface-bg);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.swap-fallback-link:hover {
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
+.swap-link-icon {
+    font-size: 1.4em;
 }
 
 /* 14b. Meme Gallery Items */
@@ -593,7 +472,7 @@ footer {
     position: fixed;
     inset: 0;
     z-index: 500;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
     padding: 2rem;
@@ -604,13 +483,41 @@ footer {
     display: flex;
 }
 
+.lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    cursor: default;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
 .lightbox-img {
     max-width: 90vw;
-    max-height: 85vh;
+    max-height: 75vh;
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-    cursor: default;
+}
+
+.lightbox-download {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    background-color: var(--accent-primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lightbox-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .lightbox-close {
@@ -761,10 +668,9 @@ footer {
     .roadmap-phase h3 { font-size: 1rem; }
     .roadmap-phase ul li { font-size: 0.8rem; }
 
-    .swap-provider-btn { padding: 8px 14px; font-size: 0.75rem; }
-    .swap-iframe { height: clamp(350px, 65vh, 500px); }
-
     .meme-item img { width: clamp(90px, 40vw, 140px); height: clamp(90px, 40vw, 140px); }
+
+    .lightbox-download { padding: 10px 24px; font-size: 0.8rem; }
 
     .lightbox { padding: 1rem; }
     .lightbox-close { top: 0.5rem; right: 0.75rem; font-size: 2rem; }
@@ -796,7 +702,6 @@ footer {
 @media (min-width: 769px) {
     .content-wrapper { padding: 1.5rem 2rem; }
     .link-btn { min-width: 200px; width: auto; }
-    .swap-provider-btn { flex: 0 1 auto; }
 }
 
 
