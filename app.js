@@ -100,4 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const savedTheme = localStorage.getItem('selected-theme') || 'pink';
     applyTheme(savedTheme);
+
+    // --- Landing Page CA Copy Button ---
+    const landingCopyBtn = document.getElementById('copy-ca-landing');
+    if (landingCopyBtn) {
+        landingCopyBtn.addEventListener('click', () => {
+            const addr = landingCopyBtn.dataset.caAddress;
+            const textSpan = landingCopyBtn.querySelector('.ca-text-landing');
+            const iconSpan = landingCopyBtn.querySelector('.copy-icon-landing');
+            const originalText = textSpan.textContent;
+            navigator.clipboard.writeText(addr).then(() => {
+                textSpan.textContent = 'Copied!';
+                iconSpan.textContent = '✅';
+                landingCopyBtn.classList.add('copied');
+                setTimeout(() => {
+                    textSpan.textContent = originalText;
+                    iconSpan.textContent = '📋';
+                    landingCopyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy Contract Address:', err);
+                textSpan.textContent = 'Copy Failed';
+            });
+        });
+    }
 });
