@@ -14,15 +14,54 @@
 
     <!-- Main Navigation Container with CSS Paw -->
     <nav id="paw-navigator">
+
+        <!-- Hero Welcome Text -->
+        <div class="hero-text">
+            <span class="hero-welcome">Welcome to the World of</span>
+        </div>
+
+        <!-- Swap CTA Buttons -->
+        <div class="hero-cta-buttons">
+            <a href="https://app.squidrouter.com/" target="_blank" class="cta-btn cta-swap">
+                <span class="cta-icon">🐍</span> Crosschain Swap
+            </a>
+            <a href="https://app.uniswap.org/explore/tokens/ethereum/0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027?inputCurrency=NATIVE" target="_blank" class="cta-btn cta-uniswap">
+                <span class="cta-icon">🦄</span> Uniswap
+            </a>
+        </div>
+
         <div class="paw-container">
-         
+
             <button class="nav-bubble" id="legend-bubble" data-target="legend-panel" data-tooltip="The Story"><span>THE LEGEND</span></button>
             <button class="nav-bubble" id="numbers-bubble" data-target="numbers-panel" data-tooltip="Tokenomics"><span>THE NUMBERS</span></button>
             <button class="nav-bubble" id="memes-bubble" data-target="memes-panel" data-tooltip="Community Memes"><span>MEMES</span></button>
             <button class="nav-bubble" id="swap-bubble" data-target="swap-panel" data-tooltip="Get Xiaobai"><span>SWAP</span></button>
-        
+
             <button class="nav-bubble" id="main-bubble" data-target="coming-soon-panel" data-tooltip="Coming Soon!"><span>XIAOBAI</span></button>
         </div>
+
+        <!-- Mascot Character -->
+        <img src="assets/xiaobai-cartoon.PNG" alt="Xiaobai mascot" class="hero-mascot">
+
+        <!-- Diamond Social Icons -->
+        <div class="diamond-socials">
+            <a href="https://t.me/Xiaobai_CTO_ETH" target="_blank" class="diamond-icon" aria-label="Telegram">
+                <img src="assets/tg-logo.png" alt="Telegram">
+            </a>
+            <a href="https://x.com/xiaobai_cto_eth" target="_blank" class="diamond-icon" aria-label="X (Twitter)">
+                <img src="assets/x-logo.png" alt="X">
+            </a>
+        </div>
+
+        <!-- Landing Contract Address Bar -->
+        <div class="landing-ca-bar">
+            <span class="ca-label-landing">CA:</span>
+            <button id="copy-ca-landing" data-ca-address="0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027">
+                <span class="ca-text-landing">0xcb69e5750f8dc3b69647b9d8b1f45466ace0a027</span>
+                <span class="copy-icon-landing">📋</span>
+            </button>
+        </div>
+
     </nav>
 
     <!-- Fullscreen Content Window -->
