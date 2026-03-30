@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupTabListeners(wrapper);
         setupCopyButton(wrapper);
         setupLightbox(wrapper);
+        setupRoadmap(wrapper);
     };
 
     const showNav = () => {
@@ -124,6 +125,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
+        });
+    }
+
+    // =====================
+    // ROADMAP ACCORDION
+    // =====================
+    function setupRoadmap(container) {
+        const phases = container.querySelectorAll('.roadmap-phase');
+        phases.forEach(phase => {
+            const header = phase.querySelector('.phase-header');
+            if (!header) return;
+
+            header.addEventListener('click', () => {
+                const isActive = phase.classList.contains('active');
+                // Close all phases
+                phases.forEach(p => p.classList.remove('active'));
+                // Open clicked one (unless it was already open)
+                if (!isActive) {
+                    phase.classList.add('active');
+                }
+            });
         });
     }
 
