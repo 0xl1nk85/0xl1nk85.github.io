@@ -123,7 +123,7 @@ body.content-active #content-container {
     font-size: clamp(0.55rem, 1.8vw, 0.9rem);
     text-transform: uppercase;
     cursor: pointer;
-    transition: scale 0.3s ease, filter 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    transition: scale 0.3s ease, filter 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     opacity: 0;
     animation: bounce-in 0.6s forwards;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -132,14 +132,50 @@ body.content-active #content-container {
 }
 
 .nav-bubble span {
-    padding-bottom: 10%;
+    padding-bottom: 5%;
 }
 
+/* Hover state */
 .nav-bubble:hover {
-    scale: 1.1 !important; 
+    scale: 1.1;
     filter: drop-shadow(0 0 10px var(--accent-primary));
     background-color: var(--accent-primary);
-    color: #ffffff; /* Use white text on hover for contrast */
+    border-color: var(--accent-primary);
+    color: #ffffff;
+}
+
+/* Active/pressed state for touch feedback */
+.nav-bubble:active {
+    scale: 0.95;
+    filter: drop-shadow(0 0 5px var(--accent-primary));
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+}
+
+/* Tooltip on hover (desktop) */
+.nav-bubble::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -1.8rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(calc(-1 * var(--bubble-rotate, 0deg)));
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.nav-bubble:hover::after {
+    opacity: 1;
+}
+
+/* Hide tooltips on touch devices */
+@media (hover: none) {
+    .nav-bubble::after { display: none; }
 }
 
 /* --- Paw Shapes using border-radius --- */
@@ -157,25 +193,28 @@ body.content-active #content-container {
     transition: color 0.3s ease, text-shadow 0.3s ease;
     -webkit-text-stroke: 1.5px var(--accent-primary);
     text-shadow:
-        0 0 8px rgba(254, 102, 195, 0.3),
-        0 0 16px rgba(254, 102, 195, 0.15),
+        0 0 8px color-mix(in srgb, var(--accent-primary) 30%, transparent),
+        0 0 16px color-mix(in srgb, var(--accent-primary) 15%, transparent),
         2px 2px 0 rgba(0, 0, 0, 0.1);
     letter-spacing: 0.05em;
 }
 
 /* --- POSITIONING & ANIMATION --- */
-#legend-bubble  { top: 30%;   left: -0%;   width: 20%; height: 40%; animation-delay: 0.1s; rotate: -20deg; }
-#numbers-bubble { top: 0%;    left: 23%;  width: 23%; height: 45%; animation-delay: 0.2s; rotate: -7deg; }
-#memes-bubble   { top: 0%;    right: 23%; width: 23%; height: 45%; animation-delay: 0.3s; rotate: 7deg; }
-#swap-bubble    { top: 30%;   right: -0%;  width: 20%; height: 40%; animation-delay: 0.4s; rotate: 20deg; }
+#legend-bubble  { --bubble-rotate: -20deg; top: 28%;  left: 1%;    width: 20%; height: 38%; animation-delay: 0.1s; rotate: -20deg; }
+#numbers-bubble { --bubble-rotate: -7deg;  top: 0%;   left: 23%;   width: 23%; height: 43%; animation-delay: 0.2s; rotate: -7deg; }
+#memes-bubble   { --bubble-rotate: 7deg;   top: 0%;   right: 23%;  width: 23%; height: 43%; animation-delay: 0.3s; rotate: 7deg; }
+#swap-bubble    { --bubble-rotate: 20deg;  top: 28%;  right: 1%;   width: 20%; height: 38%; animation-delay: 0.4s; rotate: 20deg; }
 #main-bubble    {
-    top: 55%;   left: 50%;
-    width: 48%; height: 60%;
+    top: 50%;   left: 50%;
+    width: 48%; height: 55%;
     translate: -50% 0;
     rotate: 0deg;
     animation-delay: 0s;
     cursor: pointer;
 }
+
+/* No tooltip on main bubble */
+#main-bubble::after { display: none; }
 
 /* 6. CENTERED Fullscreen Content Container */
 #content-container {
