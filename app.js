@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.getElementById('back-button');
     const contentContainer = document.getElementById('content-container');
     const contentTemplates = document.getElementById('content-templates');
-    const themeButtons = document.querySelectorAll('.theme-btn');
 
     // =====================
     // NAVIGATION
@@ -175,54 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-    }
-
-    // =====================
-    // THEME PICKER
-    // =====================
-    const applyTheme = (themeName) => {
-        body.classList.remove('theme-pink', 'theme-cyan', 'theme-yellow');
-        body.classList.add(`theme-${themeName}`);
-        themeButtons.forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.theme === themeName);
-        });
-    };
-
-    themeButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const themeName = btn.dataset.theme;
-            localStorage.setItem('selected-theme', themeName);
-            applyTheme(themeName);
-        });
-    });
-
-    const savedTheme = localStorage.getItem('selected-theme') || 'pink';
-    applyTheme(savedTheme);
-
-    // =====================
-    // HEADER SCROLL HIDE/SHOW
-    // =====================
-    const header = document.getElementById('site-header');
-    const ticker = document.querySelector('.ticker-tape');
-    if (header) {
-        let lastScrollY = 0;
-
-        const onScroll = (e) => {
-            const scrollEl = e.target;
-            const currentY = scrollEl.scrollTop || 0;
-
-            if (currentY > lastScrollY && currentY > 60) {
-                header.classList.add('hidden');
-                if (ticker) ticker.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-                if (ticker) ticker.classList.remove('hidden');
-            }
-            lastScrollY = currentY;
-        };
-
-        contentContainer.addEventListener('scroll', onScroll);
-        document.getElementById('paw-navigator').addEventListener('scroll', onScroll);
     }
 
     // =====================
