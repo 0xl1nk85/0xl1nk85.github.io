@@ -173,6 +173,30 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(savedTheme);
 
     // =====================
+    // HEADER SCROLL HIDE/SHOW
+    // =====================
+    const header = document.getElementById('site-header');
+    if (header) {
+        let lastScrollY = 0;
+
+        const onScroll = (e) => {
+            const scrollEl = e.target;
+            const currentY = scrollEl.scrollTop || 0;
+
+            if (currentY > lastScrollY && currentY > 60) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            lastScrollY = currentY;
+        };
+
+        // Listen on both scrollable containers
+        contentContainer.addEventListener('scroll', onScroll);
+        document.getElementById('paw-navigator').addEventListener('scroll', onScroll);
+    }
+
+    // =====================
     // LANDING CA COPY BUTTON
     // =====================
     const landingCopyBtn = document.getElementById('copy-ca-landing');

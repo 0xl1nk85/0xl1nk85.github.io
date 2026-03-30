@@ -99,7 +99,7 @@ body.content-active #content-container {
     gap: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 1rem 1rem;
+    padding: 3rem 1rem 1rem 1rem;
 }
 
 .paw-container {
@@ -223,7 +223,7 @@ body.content-active #content-container {
     z-index: 20;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 1rem 1rem 4rem 1rem;
+    padding: 3rem 1rem 4rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -339,23 +339,44 @@ p {
 }
 
 
-/* 8. Theme Picker */
-.theme-picker {
+/* 8. Site Header */
+.site-header {
     position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    z-index: 200;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.25rem;
+    background-color: var(--main-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.35s ease;
+}
+
+.site-header.hidden {
+    transform: translateY(-100%);
+}
+
+.header-brand {
+    font-family: var(--font-header);
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+    -webkit-text-stroke: 0.5px var(--accent-primary);
+}
+
+.header-theme-picker {
     display: flex;
     gap: 0.5rem;
-    background-color: var(--surface-bg);
-    padding: 0.4rem 0.75rem;
-    border-radius: 50px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
 }
+
 .theme-btn {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     border: 3px solid transparent;
     cursor: pointer;
@@ -769,8 +790,9 @@ footer {
     .lightbox { padding: 1rem; }
     .lightbox-close { top: 0.5rem; right: 0.75rem; font-size: 2rem; }
 
-    .theme-picker { bottom: 0.5rem; right: 0.5rem; padding: 0.3rem 0.5rem; }
-    .theme-btn { width: 24px; height: 24px; }
+    .site-header { padding: 0.5rem 0.75rem; }
+    .header-brand { font-size: 0.9rem; }
+    .theme-btn { width: 22px; height: 22px; }
 
     footer p { font-size: 0.55rem; }
 }
