@@ -387,120 +387,90 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-/* 10. Roadmap Accordion Styles */
-.roadmap-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
+/* 10. Roadmap — Trail Timeline */
 
-.roadmap-phase {
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
+/* Progress Bar */
+.trail-progress { margin-bottom: 2rem; padding: 1rem 1.25rem; background: var(--surface-bg); border: 1px solid var(--border-color); border-radius: 12px; }
+.trail-progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-family: var(--font-header); font-size: clamp(0.75rem, 2vw, 0.9rem); color: var(--text-primary); text-transform: uppercase; }
+.trail-progress-count { color: var(--accent-primary); font-family: var(--font-body); font-weight: 700; }
+.trail-progress-bar { height: 10px; background: var(--border-color); border-radius: 99px; overflow: hidden; position: relative; }
+.trail-progress-fill { height: 100%; width: var(--progress, 0%); background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); border-radius: 99px; transition: width 1s ease; position: relative; }
+.trail-progress-fill::after { content: '🐾'; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; filter: drop-shadow(0 0 4px var(--accent-primary)); animation: paw-walk 0.6s ease-in-out infinite alternate; }
+@keyframes paw-walk { 0% { transform: translateY(-50%) rotate(-10deg); } 100% { transform: translateY(-50%) rotate(10deg); } }
+.trail-progress-markers { display: flex; justify-content: space-between; margin-top: 0.5rem; padding: 0 2px; }
+.trail-progress-markers .marker { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); border: 2px solid var(--border-color); transition: all 0.3s ease; }
+.trail-progress-markers .marker.done { background: var(--accent-primary); border-color: var(--accent-primary); }
+.trail-progress-markers .marker.current { background: transparent; border-color: var(--accent-primary); animation: pulse-marker 1.5s ease-in-out infinite; }
+@keyframes pulse-marker { 0%, 100% { box-shadow: 0 0 4px var(--accent-primary); } 50% { box-shadow: 0 0 12px var(--accent-primary); } }
 
-.roadmap-phase.active {
-    border-color: var(--accent-primary);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
+/* Timeline Container */
+.roadmap-timeline { position: relative; padding-left: 40px; }
+.timeline-line { position: absolute; left: 18px; top: 0; bottom: 0; width: 4px; background: var(--border-color); border-radius: 2px; }
+.timeline-line-fill { width: 100%; height: var(--fill-height, 0%); background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary)); border-radius: 2px; transition: height 1s ease; }
 
-.phase-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 12px 16px;
-    cursor: pointer;
-    background-color: var(--surface-bg);
-    transition: background-color 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-}
+/* Phase Item */
+.roadmap-phase { position: relative; display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; border: none; border-radius: 0; overflow: visible; }
 
-.phase-header:hover {
-    background-color: var(--accent-primary);
-}
-.phase-header:hover h3,
-.phase-header:hover .phase-toggle {
-    color: #ffffff;
-}
-.phase-header:hover .phase-number {
-    background-color: #ffffff;
-    color: var(--accent-primary);
-}
+/* Node (circle on timeline) */
+.phase-node { position: absolute; left: -40px; top: 14px; width: 36px; height: 36px; border-radius: 50%; background: var(--surface-bg); border: 3px solid var(--border-color); display: grid; place-items: center; z-index: 2; transition: all 0.4s ease; }
+.phase-node .phase-number { width: auto; height: auto; background: none; color: var(--text-secondary); font-family: var(--font-header); font-size: 0.85rem; display: block; border-radius: 0; transition: all 0.3s ease; }
+.phase-node .phase-status-icon { display: none; }
 
-.phase-header:active {
-    background-color: var(--accent-primary);
-}
+/* Done node */
+.roadmap-phase.done .phase-node { background: var(--accent-primary); border-color: var(--accent-primary); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-primary) 20%, transparent); }
+.roadmap-phase.done .phase-node .phase-number { display: none; }
+.roadmap-phase.done .phase-node .phase-status-icon { display: block; color: #ffffff; font-size: 0.9rem; }
 
-.roadmap-phase.active .phase-header {
-    background-color: var(--accent-primary);
-}
+/* Current node */
+.roadmap-phase.current .phase-node { background: var(--main-bg); border-color: var(--accent-primary); animation: pulse-node 2s ease-in-out infinite; }
+.roadmap-phase.current .phase-node .phase-number { color: var(--accent-primary); font-weight: 700; }
+@keyframes pulse-node { 0%, 100% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-primary) 15%, transparent); } 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent-primary) 25%, transparent); } }
+
+/* Upcoming node */
+.roadmap-phase.upcoming .phase-node { background: var(--surface-bg); border-color: var(--border-color); opacity: 0.6; }
+
+/* Phase Card */
+.phase-card { flex: 1; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: var(--main-bg); transition: all 0.4s ease; border-left: 4px solid var(--border-color); }
+.roadmap-phase.done .phase-card { border-left-color: var(--accent-primary); }
+.roadmap-phase.current .phase-card { border-left-color: var(--accent-primary); box-shadow: 0 4px 20px color-mix(in srgb, var(--accent-primary) 15%, transparent); }
+.roadmap-phase.upcoming .phase-card { opacity: 0.65; }
+.roadmap-phase.upcoming:hover .phase-card,
+.roadmap-phase.upcoming.active .phase-card { opacity: 1; }
+.roadmap-phase.active .phase-card { box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); border-color: var(--accent-primary); border-left-color: var(--accent-primary); }
+
+/* Phase Header */
+.phase-header { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 14px 16px; cursor: pointer; background-color: var(--surface-bg); transition: background-color 0.3s ease; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.phase-title-group { flex: 1; min-width: 0; }
+.phase-label { display: block; font-family: var(--font-body); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); margin-bottom: 2px; }
+.roadmap-phase.current .phase-label { color: var(--accent-primary); }
+.phase-header h3 { font-family: var(--font-header); color: var(--text-primary); font-size: clamp(0.85rem, 2.5vw, 1.1rem); margin: 0; transition: color 0.3s ease; }
+.phase-toggle { font-size: 1.2rem; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); flex-shrink: 0; display: inline-block; }
+.phase-header:hover { background-color: color-mix(in srgb, var(--accent-primary) 8%, var(--surface-bg)); }
+
+/* Active header */
+.roadmap-phase.active .phase-header { background: linear-gradient(135deg, var(--accent-primary), color-mix(in srgb, var(--accent-secondary) 40%, var(--accent-primary))); }
 .roadmap-phase.active .phase-header h3,
-.roadmap-phase.active .phase-header .phase-toggle {
-    color: #ffffff;
-}
-.roadmap-phase.active .phase-header .phase-number {
-    background-color: #ffffff;
-    color: var(--accent-primary);
-}
+.roadmap-phase.active .phase-header .phase-label { color: #ffffff; }
+.roadmap-phase.active .phase-toggle { transform: rotate(360deg) scale(1.3); filter: brightness(0) invert(1); }
 
-.phase-number {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: var(--accent-primary);
-    color: #ffffff;
-    display: grid;
-    place-items: center;
-    font-family: var(--font-header);
-    font-size: 0.9rem;
-    flex-shrink: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+/* Active node highlight */
+.roadmap-phase.active .phase-node { background: var(--accent-primary); border-color: var(--accent-primary); opacity: 1; transform: scale(1.15); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-primary) 25%, transparent); }
+.roadmap-phase.active .phase-node .phase-number { color: #ffffff; display: block; }
+.roadmap-phase.active.done .phase-node .phase-number { display: none; }
+.roadmap-phase.active.done .phase-node .phase-status-icon { display: block; }
 
-.phase-header h3 {
-    font-family: var(--font-header);
-    color: var(--text-primary);
-    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-    margin: 0;
-    flex: 1;
-    transition: color 0.3s ease;
-}
-
-.phase-toggle {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    transition: transform 0.3s ease, color 0.3s ease;
-    flex-shrink: 0;
-}
-
-.roadmap-phase.active .phase-toggle {
-    transform: rotate(45deg);
-}
-
-.phase-content {
-    list-style-type: '🐾  ';
-    padding: 0 16px 0 60px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
-}
-
-.roadmap-phase.active .phase-content {
-    max-height: 500px;
-    padding: 12px 16px 16px 60px;
-}
-
-.phase-content li {
-    color: var(--text-secondary);
-    font-size: clamp(0.8rem, 2.2vw, 0.9rem);
-    padding-left: 8px;
-    line-height: 1.6;
-    margin-bottom: 0.25rem;
-}
+/* Phase Content (expandable) */
+.phase-content { list-style: none; padding: 0 16px 0 16px; max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.4s ease; }
+.roadmap-phase.active .phase-content { max-height: 500px; padding: 12px 16px 16px 16px; }
+.phase-content li { color: var(--text-secondary); font-size: clamp(0.8rem, 2.2vw, 0.9rem); line-height: 1.6; margin-bottom: 0.4rem; padding-left: 28px; position: relative; opacity: 0; transform: translateX(-8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.roadmap-phase.active .phase-content li { opacity: 1; transform: translateX(0); }
+.roadmap-phase.active .phase-content li:nth-child(1) { transition-delay: 0.05s; }
+.roadmap-phase.active .phase-content li:nth-child(2) { transition-delay: 0.10s; }
+.roadmap-phase.active .phase-content li:nth-child(3) { transition-delay: 0.15s; }
+.roadmap-phase.active .phase-content li:nth-child(4) { transition-delay: 0.20s; }
+.roadmap-phase.active .phase-content li:nth-child(5) { transition-delay: 0.25s; }
+.phase-content li::before { content: '🐾'; position: absolute; left: 0; top: 0; font-size: 0.85rem; }
+.roadmap-phase.done .phase-content li { text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--accent-primary) 50%, transparent); }
 
 /* 11. Link Button Styles */
 .link-buttons-container { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
@@ -782,9 +752,15 @@ footer {
 
     .link-buttons-container { gap: 0.5rem; }
 
-    .roadmap-phase { padding-left: 20px; margin-bottom: 1.5rem; }
-    .roadmap-phase h3 { font-size: 1rem; }
-    .roadmap-phase ul li { font-size: 0.8rem; }
+    .roadmap-timeline { padding-left: 32px; }
+    .timeline-line { left: 14px; }
+    .phase-node { left: -32px; width: 28px; height: 28px; }
+    .phase-node .phase-number { font-size: 0.7rem; }
+    .phase-card { border-radius: 8px; }
+    .phase-header { padding: 10px 12px; }
+    .phase-header h3 { font-size: 0.85rem; }
+    .phase-label { font-size: 0.6rem; }
+    .trail-progress { padding: 0.75rem 1rem; margin-bottom: 1.5rem; }
 
     .meme-item img { width: clamp(90px, 40vw, 140px); height: clamp(90px, 40vw, 140px); }
 

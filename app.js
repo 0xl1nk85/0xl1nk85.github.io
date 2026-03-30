@@ -139,11 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             header.addEventListener('click', () => {
                 const isActive = phase.classList.contains('active');
-                // Close all phases
                 phases.forEach(p => p.classList.remove('active'));
-                // Open clicked one (unless it was already open)
                 if (!isActive) {
                     phase.classList.add('active');
+                    setTimeout(() => {
+                        phase.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 100);
                 }
             });
         });
