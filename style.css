@@ -581,6 +581,41 @@ footer {
     transform: scale(1.05);
 }
 
+/* 14d. Telegram Posts */
+.tg-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.tg-loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.tg-view-all {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 12px 28px;
+    border-radius: 50px;
+    background: var(--accent-primary);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-header);
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tg-view-all:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
 /* 14c. Lightbox */
 .lightbox {
     display: none;

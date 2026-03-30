@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setupCopyButton(wrapper);
         setupLightbox(wrapper);
         setupRoadmap(wrapper);
+        setupTelegramPosts(wrapper);
     };
 
     const showNav = () => {
@@ -151,6 +152,40 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape' && lightbox.classList.contains('active')) {
                 closeLightbox();
             }
+        });
+    }
+
+    // =====================
+    // TELEGRAM POSTS EMBED
+    // =====================
+    function setupTelegramPosts(container) {
+        const tgContainer = container.querySelector('.tg-posts');
+        if (!tgContainer || tgContainer.dataset.loaded) return;
+
+        const channel = tgContainer.dataset.tgChannel;
+        const postIds = tgContainer.dataset.tgPosts;
+        if (!channel || !postIds) return;
+
+        const ids = postIds.split(',').map(id => id.trim()).filter(Boolean);
+        const loadingEl = tgContainer.querySelector('.tg-loading');
+
+        // Clear loading text and load each post
+        if (loadingEl) loadingEl.remove();
+        tgContainer.dataset.loaded = 'true';
+
+        ids.forEach(postId => {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'tg-post-wrapper';
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://telegram.org/js/telegram-widget.js?22';
+            script.setAttribute('data-telegram-post', `${channel}/${postId}`);
+            script.setAttribute('data-width', '100%');
+            script.setAttribute('data-userpic', 'false');
+
+            wrapper.appendChild(script);
+            tgContainer.appendChild(wrapper);
         });
     }
 
