@@ -740,7 +740,8 @@ footer {
     color: #ffffff;
     font-family: var(--font-header);
     font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -767,7 +768,7 @@ footer {
     color: var(--text-primary);
     font-family: var(--font-header);
     font-size: clamp(0.8rem, 2vw, 0.95rem);
-    text-decoration: none;
+    cursor: pointer;
     border: 2px solid var(--border-color);
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
@@ -821,39 +822,6 @@ footer {
 @keyframes mascot-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
-}
-
-
-/* 16. Diamond Social Icons */
-.diamond-socials {
-    display: flex;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-    z-index: 11;
-}
-
-.diamond-icon {
-    width: 48px;
-    height: 48px;
-    background-color: var(--accent-primary);
-    transform: rotate(45deg);
-    display: grid;
-    place-items: center;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.diamond-icon:hover {
-    transform: rotate(45deg) scale(1.15);
-    box-shadow: 0 0 15px var(--accent-primary);
-}
-
-.diamond-icon img {
-    width: 22px;
-    height: 22px;
-    transform: rotate(-45deg);
-    filter: brightness(0) invert(1);
 }
 
 
@@ -925,10 +893,6 @@ footer {
 
     .partner-logos img { height: 18px; }
     .partner-logos { gap: 0.5rem; }
-
-    .diamond-socials { gap: 1rem; margin-top: 0.25rem; }
-    .diamond-icon { width: 40px; height: 40px; }
-    .diamond-icon img { width: 18px; height: 18px; }
 
     .landing-ca-bar { padding: 5px 12px; margin-top: 0.5rem; }
     #copy-ca-landing { font-size: 0.55rem; }

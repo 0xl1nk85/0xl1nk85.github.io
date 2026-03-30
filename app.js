@@ -41,6 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
     backButton.addEventListener('click', showNav);
 
     // =====================
+    // LANDING CTA BUTTONS
+    // =====================
+    const showContentWithSub = (panelId, subId) => {
+        showContent(panelId);
+        if (subId) {
+            const wrapper = contentContainer.querySelector('.content-wrapper');
+            if (!wrapper) return;
+            const tabs = wrapper.querySelectorAll('.tab-btn');
+            const panels = wrapper.querySelectorAll('.sub-panel');
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+            const targetTab = wrapper.querySelector(`.tab-btn[data-sub-target="${subId}"]`);
+            const targetPanel = wrapper.querySelector(`#${subId}`);
+            if (targetTab) targetTab.classList.add('active');
+            if (targetPanel) targetPanel.classList.add('active');
+        }
+    };
+
+    document.querySelectorAll('.cta-buy, .cta-join').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.target;
+            const sub = btn.dataset.sub;
+            if (target) showContentWithSub(target, sub);
+        });
+    });
+
+    // =====================
     // SUB-TAB NAVIGATION
     // =====================
     function setupTabListeners(container) {
