@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
 
     function setupLightbox(container) {
-        const items = container.querySelectorAll('.meme-item');
+        const items = container.querySelectorAll('.meme-card');
         items.forEach(item => {
             item.addEventListener('click', () => {
                 const fullSrc = item.dataset.full;
