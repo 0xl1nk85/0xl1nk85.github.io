@@ -159,33 +159,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // TELEGRAM POSTS EMBED
     // =====================
     function setupTelegramPosts(container) {
-        const tgContainer = container.querySelector('.tg-posts');
-        if (!tgContainer || tgContainer.dataset.loaded) return;
+        const tgContainers = container.querySelectorAll('.tg-posts');
+        tgContainers.forEach(tgContainer => {
+            if (tgContainer.dataset.loaded) return;
 
-        const channel = tgContainer.dataset.tgChannel;
-        const postIds = tgContainer.dataset.tgPosts;
-        if (!channel || !postIds) return;
+            const channel = tgContainer.dataset.tgChannel;
+            const postIds = tgContainer.dataset.tgPosts;
+            if (!channel || !postIds) return;
 
-        const ids = postIds.split(',').map(id => id.trim()).filter(Boolean);
-        const loadingEl = tgContainer.querySelector('.tg-loading');
+            const ids = postIds.split(',').map(id => id.trim()).filter(Boolean);
+            const loadingEl = tgContainer.querySelector('.tg-loading');
 
-        // Clear loading text and load each post
-        if (loadingEl) loadingEl.remove();
-        tgContainer.dataset.loaded = 'true';
+            if (loadingEl) loadingEl.remove();
+            tgContainer.dataset.loaded = 'true';
 
-        ids.forEach(postId => {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'tg-post-wrapper';
+            ids.forEach(postId => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'tg-post-wrapper';
 
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = 'https://telegram.org/js/telegram-widget.js?22';
-            script.setAttribute('data-telegram-post', `${channel}/${postId}`);
-            script.setAttribute('data-width', '100%');
-            script.setAttribute('data-userpic', 'false');
+                const script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://telegram.org/js/telegram-widget.js?22';
+                script.setAttribute('data-telegram-post', `${channel}/${postId}`);
+                script.setAttribute('data-width', '100%');
+                script.setAttribute('data-userpic', 'false');
 
-            wrapper.appendChild(script);
-            tgContainer.appendChild(wrapper);
+                wrapper.appendChild(script);
+                tgContainer.appendChild(wrapper);
+            });
         });
     }
 
