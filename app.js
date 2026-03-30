@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // HEADER SCROLL HIDE/SHOW
     // =====================
     const header = document.getElementById('site-header');
+    const ticker = document.querySelector('.ticker-tape');
     if (header) {
         let lastScrollY = 0;
 
@@ -185,13 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (currentY > lastScrollY && currentY > 60) {
                 header.classList.add('hidden');
+                if (ticker) ticker.classList.add('hidden');
             } else {
                 header.classList.remove('hidden');
+                if (ticker) ticker.classList.remove('hidden');
             }
             lastScrollY = currentY;
         };
 
-        // Listen on both scrollable containers
         contentContainer.addEventListener('scroll', onScroll);
         document.getElementById('paw-navigator').addEventListener('scroll', onScroll);
     }

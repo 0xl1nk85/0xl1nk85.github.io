@@ -99,7 +99,7 @@ body.content-active #content-container {
     gap: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 3rem 1rem 1rem 1rem;
+    padding: 4.5rem 1rem 1rem 1rem;
 }
 
 .paw-container {
@@ -652,6 +652,161 @@ footer {
 }
 
 
+/* 15a. Ticker Tape Marquee */
+.ticker-tape {
+    position: fixed;
+    top: 44px;
+    left: 0;
+    right: 0;
+    z-index: 250;
+    overflow: hidden;
+    background: var(--accent-primary);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(0.65rem, 1.8vw, 0.8rem);
+    white-space: nowrap;
+    padding: 4px 0;
+    transition: transform 0.35s ease;
+}
+
+.ticker-tape.hidden {
+    transform: translateY(-100%);
+}
+
+.ticker-content {
+    display: inline-flex;
+    gap: 3rem;
+    animation: ticker-scroll 25s linear infinite;
+}
+
+.ticker-content span {
+    flex-shrink: 0;
+}
+
+@keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* 15b. Quick Pitch Stats */
+.quick-stats {
+    display: flex;
+    gap: clamp(1rem, 4vw, 2rem);
+    justify-content: center;
+    margin-bottom: 0.25rem;
+    flex-shrink: 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.stat-value {
+    font-family: var(--font-header);
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    color: var(--accent-primary);
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: clamp(0.55rem, 1.5vw, 0.7rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+/* 15c. Landing CTA Row */
+.landing-cta-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 11;
+}
+
+.cta-buy {
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: #ffffff;
+    font-family: var(--font-header);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    animation: pulse-buy 2s ease-in-out infinite;
+}
+
+.cta-buy:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse-buy {
+    0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+    50% { box-shadow: 0 4px 25px color-mix(in srgb, var(--accent-primary) 40%, transparent); }
+}
+
+.cta-join {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    font-family: var(--font-header);
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    text-decoration: none;
+    border: 2px solid var(--border-color);
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cta-join:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+/* 15d. Partner Logos Row */
+.partner-logos {
+    display: flex;
+    gap: clamp(0.75rem, 3vw, 1.5rem);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.partner-logos:hover {
+    opacity: 0.8;
+}
+
+.partner-logos img {
+    height: clamp(20px, 4vw, 28px);
+    width: auto;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.partner-logos img:hover {
+    filter: grayscale(0%);
+}
+
 /* 15. Hero Mascot */
 .hero-mascot {
     height: clamp(100px, 22vh, 220px);
@@ -751,12 +906,25 @@ footer {
     #paw-navigator {
         padding: 0.5rem 0.5rem;
         justify-content: flex-start;
-        padding-top: 1rem;
+        padding-top: 4rem;
     }
 
-    .paw-container { width: clamp(240px, 85vw, 340px); }
+    .ticker-tape { top: 38px; font-size: 0.6rem; }
 
-    .hero-mascot { height: clamp(80px, 18vh, 150px); margin-top: -0.5rem; }
+    .quick-stats { gap: 1rem; }
+    .stat-value { font-size: 1.1rem; }
+    .stat-label { font-size: 0.5rem; }
+
+    .paw-container { width: clamp(220px, 80vw, 320px); }
+
+    .hero-mascot { height: clamp(70px, 15vh, 120px); margin-top: -0.25rem; }
+
+    .landing-cta-row { gap: 0.5rem; }
+    .cta-buy { padding: 10px 24px; font-size: 0.8rem; }
+    .cta-join { padding: 10px 20px; font-size: 0.75rem; }
+
+    .partner-logos img { height: 18px; }
+    .partner-logos { gap: 0.5rem; }
 
     .diamond-socials { gap: 1rem; margin-top: 0.25rem; }
     .diamond-icon { width: 40px; height: 40px; }
