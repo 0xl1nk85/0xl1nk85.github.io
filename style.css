@@ -581,19 +581,13 @@ footer {
     transform: scale(1.05);
 }
 
-/* 14d. Telegram Posts */
-.tg-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+/* 14d. Telegram Channel Feed */
+.tg-channel-feed {
     width: 100%;
-}
-
-.tg-loading {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-secondary);
-    font-weight: 700;
+    height: clamp(400px, 60vh, 700px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--surface-bg);
 }
 
 .tg-view-all {

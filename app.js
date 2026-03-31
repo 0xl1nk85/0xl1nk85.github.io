@@ -156,37 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =====================
-    // TELEGRAM POSTS EMBED
+    // TELEGRAM CHANNEL FEEDS
     // =====================
     function setupTelegramPosts(container) {
-        const tgContainers = container.querySelectorAll('.tg-posts');
-        tgContainers.forEach(tgContainer => {
-            if (tgContainer.dataset.loaded) return;
-
-            const channel = tgContainer.dataset.tgChannel;
-            const postIds = tgContainer.dataset.tgPosts;
-            if (!channel || !postIds) return;
-
-            const ids = postIds.split(',').map(id => id.trim()).filter(Boolean);
-            const loadingEl = tgContainer.querySelector('.tg-loading');
-
-            if (loadingEl) loadingEl.remove();
-            tgContainer.dataset.loaded = 'true';
-
-            ids.forEach(postId => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'tg-post-wrapper';
-
-                const script = document.createElement('script');
-                script.async = true;
-                script.src = 'https://telegram.org/js/telegram-widget.js?22';
-                script.setAttribute('data-telegram-post', `${channel}/${postId}`);
-                script.setAttribute('data-width', '100%');
-                script.setAttribute('data-userpic', 'false');
-
-                wrapper.appendChild(script);
-                tgContainer.appendChild(wrapper);
-            });
+        const feeds = container.querySelectorAll('.tg-channel-feed');
+        feeds.forEach(iframe => {
+            if (iframe.src) return;
+            const src = iframe.dataset.src;
+            if (src) iframe.src = src;
         });
     }
 
