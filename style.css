@@ -581,13 +581,57 @@ footer {
     transform: scale(1.05);
 }
 
-/* 14d. Telegram Channel Feed */
-.tg-channel-feed {
-    width: 100%;
-    height: clamp(400px, 60vh, 700px);
+/* 14d. Telegram Channel Links */
+.tg-channel-cta {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tg-channel-cta > p {
+    margin-bottom: 0;
+}
+
+.tg-channel-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 14px 16px;
+    background: var(--surface-bg);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    background: var(--surface-bg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    flex-wrap: wrap;
+}
+
+.tg-channel-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.tg-channel-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tg-channel-icon {
+    font-size: 1.8rem;
+}
+
+.tg-channel-name {
+    display: block;
+    font-family: var(--font-header);
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    color: var(--text-primary);
+}
+
+.tg-channel-handle {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
 }
 
 .tg-view-all {

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setupCopyButton(wrapper);
         setupLightbox(wrapper);
         setupRoadmap(wrapper);
-        setupTelegramPosts(wrapper);
     };
 
     const showNav = () => {
@@ -155,17 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // =====================
-    // TELEGRAM CHANNEL FEEDS
-    // =====================
-    function setupTelegramPosts(container) {
-        const feeds = container.querySelectorAll('.tg-channel-feed');
-        feeds.forEach(iframe => {
-            if (iframe.src) return;
-            const src = iframe.dataset.src;
-            if (src) iframe.src = src;
-        });
-    }
+
 
     // =====================
     // ROADMAP ACCORDION
